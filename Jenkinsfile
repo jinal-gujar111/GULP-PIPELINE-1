@@ -14,16 +14,19 @@ pipeline {
         }
 
         stage('Gulp') {
-            steps {
-                script {
-                    echo 'Running Gulp tasks...'
-                    sh 'gulp welcome-message'
-                    sh 'gulp copy_file'
-                    sh 'gulp babelTest'
-                    sh 'gulp styles'
-                }
-            }
+    steps {
+        script {
+            echo 'Installing Gulp globally...'
+            sh 'npm install -g gulp'
+            echo 'Running Gulp tasks...'
+            sh 'gulp welcome-message'
+            sh 'gulp copy_file'
+            sh 'gulp babelTest'
+            sh 'gulp styles'
         }
+    }
+}
+
 
         stage('Test') {
             steps {
