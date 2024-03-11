@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Application</title>
+    <link rel="stylesheet" href="/dist/clock.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="box">
+            <div id="c1" class="c">clock</div>
+            <div id="stopwatch" class="c">
+                <span id="minute">00 :</span>
+                <span id="sec">00 :</span>
+                <span id="mili_sec">00</span>
+            </div>
+            <div id="but">
+                <div><button onclick="fu2()">time</button></div>
+                <div><button onclick="watch()">Stopwatch</button></div>
+            </div>
+
+            <div id="stt">
+                <div><button id="start_btn" onclick="start()">start</button></div>
+                <div><button id="stop_btn" onclick="stop()">stop</button></div>
+                <div><button id="reset_btn" onclick="reset()">reset</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="/dist/clock.js"></script>
+</body>
+
+</html>

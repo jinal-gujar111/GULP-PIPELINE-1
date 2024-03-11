@@ -1,0 +1,21 @@
+#but {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+#but div button {
+    font-size: 25px;
+}
+
+#stt {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#stt div button {
+    color: brown;
+    font-size: 15px;
+}
