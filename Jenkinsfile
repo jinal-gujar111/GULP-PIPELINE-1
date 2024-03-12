@@ -11,29 +11,32 @@ pipeline {
                     sh 'npm install'
                 }
             }
+            post {
+                success {
+                    archiveArtifacts 'dist/**/*'
+                }
+            }
         }
 
         stage('Gulp') {
-    steps {
-        script {
-            echo 'Installing Gulp globally...'
-            sh 'npm install -g gulp'
-            echo 'Running Gulp tasks...'
-            sh 'gulp welcome-message'
-            sh 'gulp copy_file'
-            sh 'gulp babelTest'
-            sh 'gulp styles'
+            steps {
+                script {
+                    echo 'Installing Gulp globally...'
+                    sh 'npm install -g gulp'
+                    echo 'Running Gulp tasks...'
+                    sh 'gulp welcome-message'
+                    sh 'gulp copy_file'
+                    sh 'gulp babelTest'
+                    sh 'gulp styles'
+                }
+            }
         }
-    }
-}
 
-
-    stage('Test') {
-    steps {
-        echo 'No tests specified, skipping...'
-    }
-}
-
+        stage('Test') {
+            steps {
+                echo 'No tests specified, skipping...'
+            }
+        }
 
         stage('Deploy') {
             steps {
