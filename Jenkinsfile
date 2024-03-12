@@ -9,6 +9,16 @@ pipeline {
                 script {
                     echo 'Building...'
                     sh 'npm install'
+                    
+                    // Run Gulp tasks
+                    sh 'gulp welcome-message'
+                    sh 'gulp copy_file'
+                    sh 'gulp babelTest'
+                    sh 'gulp styles'
+                    
+                    // Commit artifacts to the repository
+                    sh 'git add dist'
+                    sh 'git commit -m "Add build artifacts" || true'
                 }
             }
             post {
