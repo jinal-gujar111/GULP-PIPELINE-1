@@ -19,7 +19,9 @@ pipeline {
                     // Commit artifacts to the repository
                     sh 'git add dist'
                     sh 'git commit -m "Add build artifacts" || true'
+                    sh 'git checkout main'
                     sh 'git push origin main'
+
                 }
             }
             post {
