@@ -18,11 +18,16 @@ pipeline {
                 script {
                     def nodejsHome = tool 'NodeJS'
                     env.PATH = "${nodejsHome}/bin:${env.PATH}"
-                    sh "npm install -g n"
-                    sh "mkdir -p ~/.n"
-                    sh "export N_PREFIX=~/.n"
-                    sh "n ${NODEJS_VERSION}"
-                    env.PATH = "$N_PREFIX/bin:${env.PATH}"
+
+                    // Install nvm
+                    sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash'
+                    sh 'export NVM_DIR="$HOME/.nvm"'
+                    sh '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm'
+                    sh '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion'
+                    
+                    // Install and use the specified Node.js version
+                    sh "nvm install ${NODEJS_VERSION}"
+                    sh "nvm use ${NODEJS_VERSION}"
                 }
             }
         }
