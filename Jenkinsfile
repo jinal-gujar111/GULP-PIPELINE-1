@@ -5,7 +5,8 @@ pipeline {
         git 'Default' // Use 'Default' for the default Git installation
     }
     environment {
-        GITHUB_CREDENTIALS = credentials('github-username')
+        GITHUB_USERNAME = credentials('github-username')
+        GITHUB_PASSWORD = credentials('github-password')
     }
     stages {
         stage('Build') {
@@ -29,8 +30,8 @@ pipeline {
                     sh 'git commit -m "Add build artifacts" || true'
 
                     // Push changes to the repository with GitHub credentials
-                    withCredentials([usernamePassword(credentialsId: 'github-username', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        sh "git push https://$USERNAME:$PASSWORD@github.com/jinal-gujar111/GULP-PIPELINE-1.git HEAD:main"
+                    withCredentials([username(usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_PASSWORD', credentialsId: 'github-username')]) {
+                        sh "git push https://$GITHUB_USERNAME:$GITHUB_PASSWORD@github.com/jinal-gujar111/GULP-PIPELINE-1.git HEAD:main"
                     }
                 }
             }
