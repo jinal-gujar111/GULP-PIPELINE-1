@@ -17,13 +17,16 @@ pipeline {
                     sh 'gulp babelTest'
                     sh 'gulp styles'
                     
-                    // Configure Git user
+                      // Configure Git user
                     sh 'git config --global user.email "jinalgujar0328@gmail.com"'
                     sh 'git config --global user.name "Jinal"'
                     
                     // Commit artifacts to the repository
                     sh 'git add dist'
                     sh 'git commit -m "Add build artifacts" || true'
+                    
+                    // Push changes to the repository
+                    sh 'git push https://github.com/jinal-gujar111/GULP-PIPELINE-1.git HEAD:main'
                 }
             }
             post {
