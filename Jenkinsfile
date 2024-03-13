@@ -24,9 +24,9 @@ pipeline {
                     // Commit artifacts to the repository
                     sh 'git add dist'
                     sh 'git commit -m "Add build artifacts" || true'
-                    
-                    // Push changes to the repository
-                    sh 'git push https://github.com/jinal-gujar111/GULP-PIPELINE-1.git HEAD:main'
+
+                    // Push changes to the repository with Git credentials helper
+                    sh 'git push origin HEAD:main'
                 }
             }
             post {
