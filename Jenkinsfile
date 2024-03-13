@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         nodejs "NodeJS"
+        git 'Git'
     }
     stages {
         stage('Build') {
@@ -15,6 +16,10 @@ pipeline {
                     sh 'gulp copy_file'
                     sh 'gulp babelTest'
                     sh 'gulp styles'
+                    
+                    // Configure Git user
+                    sh 'git config --global user.email "jinalgujar0328@gmail.com"'
+                    sh 'git config --global user.name "Jinal"'
                     
                     // Commit artifacts to the repository
                     sh 'git add dist'
