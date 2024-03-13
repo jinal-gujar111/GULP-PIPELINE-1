@@ -28,11 +28,11 @@ pipeline {
                     sh 'git add dist'
                     sh 'git commit -m "Add build artifacts" || true'
 
-                  
                     // Push changes to the repository with GitHub credentials
                     withCredentials([usernamePassword(credentialsId: 'github-username', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh "git push https://$USERNAME:$PASSWORD@github.com/jinal-gujar111/GULP-PIPELINE-1.git HEAD:main"
                     }
+                }
             }
             post {
                 success {
