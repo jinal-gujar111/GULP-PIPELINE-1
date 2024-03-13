@@ -4,6 +4,9 @@ pipeline {
         nodejs "NodeJS"
         git 'Default' // Use 'Default' for the default Git installation
     }
+    environment {
+        GITHUB_CREDENTIALS = credentials('github-username')
+    }
     stages {
         stage('Build') {
             steps {
@@ -17,7 +20,7 @@ pipeline {
                     sh 'gulp babelTest'
                     sh 'gulp styles'
                     
-                      // Configure Git user
+                    // Configure Git user
                     sh 'git config --global user.email "jinalgujar0328@gmail.com"'
                     sh 'git config --global user.name "Jinal"'
                     
@@ -25,8 +28,8 @@ pipeline {
                     sh 'git add dist'
                     sh 'git commit -m "Add build artifacts" || true'
 
-                    // Push changes to the repository with Git credentials helper
-                    sh 'git push origin HEAD:main'
+                    // Push changes to the repository with GitHub credentials
+                    sh "git push https://$GITHUB_CREDENTIALS@github.com/jinal-gujar111/GULP-PIPELINE-1.git HEAD:main"
                 }
             }
             post {
