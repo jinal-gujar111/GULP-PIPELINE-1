@@ -19,7 +19,10 @@ pipeline {
                     def nodejsHome = tool 'NodeJS'
                     env.PATH = "${nodejsHome}/bin:${env.PATH}"
                     sh "npm install -g n"
+                    sh "mkdir -p ~/.n"
+                    sh "export N_PREFIX=~/.n"
                     sh "n ${NODEJS_VERSION}"
+                    env.PATH = "$N_PREFIX/bin:${env.PATH}"
                 }
             }
         }
