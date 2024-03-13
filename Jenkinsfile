@@ -16,15 +16,14 @@ pipeline {
         stage('Setup Node.js') {
             steps {
                 script {
-                    def nodejsHome = tool 'NodeJS'
-                    env.PATH = "${nodejsHome}/bin:${env.PATH}"
-
                     // Install nvm
-                    sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash'
-                    sh 'export NVM_DIR="$HOME/.nvm"'
-                    sh '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm'
-                    sh '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion'
-                    
+                    sh '''
+                        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+                        export NVM_DIR="$HOME/.nvm"
+                        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+                        [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+                    '''
+    
                     // Install and use the specified Node.js version
                     sh "nvm install ${NODEJS_VERSION}"
                     sh "nvm use ${NODEJS_VERSION}"
@@ -53,7 +52,7 @@ pipeline {
                     sh 'git commit -m "Add build artifacts" || true'
 
                     // Push changes to the repository with GitHub credentials
-                    withCredentials([username(usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_PASSWORD', credentialsId: 'github-username')]) {
+                    withCredentials([usernamePassword(credentialsId: 'github-username', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_PASSWORD')]) {
                         sh "git push https://$GITHUB_USERNAME:$GITHUB_PASSWORD@github.com/jinal-gujar111/GULP-PIPELINE-1.git HEAD:main"
                     }
                 }
