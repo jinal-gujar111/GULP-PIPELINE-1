@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         nodejs "NodeJS"
-        git 'Git'
+        git 'Default' // Use 'Default' for the default Git installation
     }
     stages {
         stage('Build') {
