@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NVM' // Node.js version manager tool
+        nodejs 'NodeJS' // Use 'NodeJS' for the Node.js tool installation
         git 'Default' // Use 'Default' for the default Git installation
     }
 
@@ -16,10 +16,10 @@ pipeline {
         stage('Setup Node.js') {
             steps {
                 script {
-                    def nvmInstaller = tool 'NVM'
-                    env.PATH = "${nvmInstaller}:${env.PATH}"
-                    sh "nvm install ${NODEJS_VERSION}"
-                    sh "nvm use ${NODEJS_VERSION}"
+                    def nodejsHome = tool 'NodeJS'
+                    env.PATH = "${nodejsHome}/bin:${env.PATH}"
+                    sh "npm install -g n"
+                    sh "n ${NODEJS_VERSION}"
                 }
             }
         }
