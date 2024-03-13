@@ -19,8 +19,7 @@ pipeline {
                     // Commit artifacts to the repository
                     sh 'git add dist'
                     sh 'git commit -m "Add build artifacts" || true'
-                    sh 'git remote set-url origin git@github.com:Jinal/GULP-PIPELINE-1.git'
-                    sh 'git push origin main'
+                
 
 
                 }
