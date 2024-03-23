@@ -7,10 +7,13 @@
       "@babel/preset-env"
     ]
   },
-  "scripts": {
-    "babelTest": "gulp babelTest",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+"scripts": {
+    "gulp-welcome-message": "gulp welcome-message",
+    "gulp-copy-file": "gulp copy_file",
+    "gulp-babel-test": "gulp babelTest",
+    "gulp-styles": "gulp styles"
+}
+,
   "author": "shirali",
   "license": "ISC",
   "devDependencies": {
