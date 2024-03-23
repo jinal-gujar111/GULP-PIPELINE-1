@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     echo 'Installing Gulp globally...'
-                    sh 'npm install -g gulp'
+                   
                     echo 'Running Gulp tasks...'
                     sh 'gulp welcome-message'
                     sh 'gulp copy_file'
